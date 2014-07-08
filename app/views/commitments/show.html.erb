@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Commitment -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Commitment %></h1>
+</div>
 
-<p>
-  <strong>Start at:</strong>
-  <%= @commitment.start_at %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:start_at) %></dt>
+      <dd><pre class="prettyprint"><%= @commitment.start_at %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:duration) %></dt>
+      <dd><pre class="prettyprint"><%= @commitment.duration %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Duration:</strong>
-  <%= @commitment.duration %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              commitments_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_commitment_path(@commitment), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              commitment_path(@commitment),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @commitment.user %>
-</p>
-
-<%= link_to 'Edit', edit_commitment_path(@commitment) %> |
-<%= link_to 'Back', commitments_path %>
