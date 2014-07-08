@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @commitment.start_at %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @commitment.duration %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @commitment.user %>
+</p>
+
+<%= link_to 'Edit', edit_commitment_path(@commitment) %> |
+<%= link_to 'Back', commitments_path %>
