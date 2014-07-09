@@ -7,11 +7,12 @@
   <%= csrf_meta_tags %>
 <meta name="viewport" content="width=device-width, initial-scale=1"/></head>
 <body>
-<%= render partial: "elements/navbar" %>
-<%= bootstrap_flash %>
-
-
-<%= yield %>
+	<%= render partial: "elements/navbar" %>
+	<%= bootstrap_flash %>
+	<div id="content" class="container">
+	  <%= yield %>
+	</div>
+	
 
 </body>
 </html>
