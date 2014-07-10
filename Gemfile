@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'puma'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
@@ -37,6 +38,11 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+group :test do
+  gem 'ffaker'
+  gem 'rspec-rails', '~> 3.0.0'
+end
+  
 
 gem 'bundler'
 

@@ -1,8 +1,19 @@
 require 'test_helper'
+require 'ffaker'
 
 class CommitmentsControllerTest < ActionController::TestCase
+  
+  def authenticate
+    true
+  end
+  
+  def current_user
+    @user = users(:one)
+  end
+  
   setup do
     @commitment = commitments(:one)
+    
   end
 
   test "should get index" do
@@ -16,9 +27,10 @@ class CommitmentsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create commitment" do
+  test "should create a new commitment" do
     assert_difference('Commitment.count') do
-      post :create, commitment: { duration: @commitment.duration, start_at: @commitment.start_at, user_id: @commitment.user_id }
+      post :create, commitment: { duration: @commitment.duration, 
+        start_at: @commitment.start_at, user: @user }
     end
 
     assert_redirected_to commitment_path(assigns(:commitment))
