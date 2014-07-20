@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718033224) do
+ActiveRecord::Schema.define(version: 20140720054123) do
 
   create_table "commitments", force: true do |t|
-    t.date     "start_at"
+    t.datetime "start_at"
     t.float    "duration"
     t.integer  "user_id"
     t.datetime "created_at"

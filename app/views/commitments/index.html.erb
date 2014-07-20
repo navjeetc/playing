@@ -21,7 +21,7 @@
       <tr>
         <td><%= commitment.user.username %></td>
         <td><%= commitment.duration %></td>
-        <td><%= commitment.start_at.strftime("%B %d, %Y") %></td>
+        <td><%= commitment.start_at.strftime("%B %d, %Y %H %M %p") %></td>
       </tr>
     <% end %>
   </tbody>
