@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718022041) do
+ActiveRecord::Schema.define(version: 20140718033224) do
 
   create_table "commitments", force: true do |t|
     t.date     "start_at"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20140718022041) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

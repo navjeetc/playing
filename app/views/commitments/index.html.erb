@@ -1,33 +1,27 @@
 <%- model_class = Commitment -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => Commitment %></h1>
+  <h1><%=t '.title', :default => "Who is playing" %></h1>
 </div>
+<%= link_to "Today", commitments_path(date: "today") %> |
+<%= link_to "Tomorrow", commitments_path(date: "tomorrow") %> |
+<%= link_to "In Coming Days", commitments_path %>
+
+
+
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
-      <th><%= model_class.human_attribute_name(:start_at) %></th>
-      <th><%= model_class.human_attribute_name(:duration) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>Player</th>
+      <th>For (hours)</th>
+      <th>Plays On</th>
     </tr>
   </thead>
   <tbody>
     <% @commitments.each do |commitment| %>
       <tr>
-        <td><%= commitment.id %></td>
-        <td><%= commitment.start_at %></td>
+        <td><%= commitment.user.username %></td>
         <td><%= commitment.duration %></td>
-        <td><%=l commitment.created_at, format: :long %></td>
-        <td>
-          <%= link_to commitment_path(commitment), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
-            <%= glyph 'info-sign' %>
-            <%= glyph 'pencil' %>
-          <%- end -%>
-          <%= link_to commitment_path(commitment), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
-            <%= glyph 'remove' %>
-          <%- end -%>
-        </td>
+        <td><%= commitment.start_at.strftime("%B %d, %Y") %></td>
       </tr>
     <% end %>
   </tbody>

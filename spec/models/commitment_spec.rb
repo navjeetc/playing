@@ -30,11 +30,18 @@ RSpec.describe Commitment, :type => :model do
 	  it "should get a list of commitments with two item", :has => :three_items do
 	  	expect(Commitment.for_today.size).to eq(2)
 	  end
+	  it "should get a list of commitments with two items", :has => :three_items do
+	  	expect(Commitment.for_date("today").size).to eq(2)
+	  end
 	end
 
 	context "when there are 3 commitments with one commitment for tomorrow" do
 	  it "should get a list of commitments with one item", :has => :three_items do
 	  	expect(Commitment.for_tomorrow.size).to eq(1)
+	  end
+
+	  it "should get a list of commitments with one item", :has => :three_items do
+	  	expect(Commitment.for_date("tomorrow").size).to eq(1)
 	  end
 	end
 end

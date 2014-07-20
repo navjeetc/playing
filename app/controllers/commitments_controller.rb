@@ -8,7 +8,7 @@ class CommitmentsController < ApplicationController
   # GET /commitments
   # GET /commitments.json
   def index
-    @commitments = Commitment.all
+    @commitments = Commitment.for_date(params[:date])
   end
 
   # GET /commitments/1
