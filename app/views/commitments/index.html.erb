@@ -2,31 +2,33 @@
 <div class="page-header">
   <h1><%=t '.title', :default => "Who is playing" %></h1>
 </div>
-<%= link_to "Today", commitments_path(date: "today") %> |
-<%= link_to "Tomorrow", commitments_path(date: "tomorrow") %> |
-<%= link_to "In Coming Days", commitments_path %>
+<%= link_to "Today", commitments_path(date: "today"), {:class => "btn btn-default #{params[:date] == 'today' ? 'active' : ''}"} %> 
+<%= link_to "Tomorrow", commitments_path(date: "tomorrow"), {:class => "btn btn-default #{params[:date] == 'tomorrow' ? 'active' : ''}"} %>  
+<%= link_to "In Coming Days", commitments_path, {:class => "btn btn-default #{params[:date].nil? ? 'active' : ''}"} %>
 
-
+<div class="new_entry_button">
+  <%= link_to "Add Entry",
+            new_commitment_path,
+            :class => 'btn btn-primary' %>
+</div>
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Player</th>
-      <th>For (hours)</th>
-      <th>Plays On</th>
+      <th>Coming At</th>
     </tr>
   </thead>
   <tbody>
     <% @commitments.each do |commitment| %>
       <tr>
-        <td><%= commitment.user.username %></td>
-        <td><%= commitment.duration %></td>
+        <td><%= commitment.user.first_name %> <%= commitment.user.last_name %></td>
         <td><%= commitment.start_at.strftime("%B %d, %Y %H %M %p") %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to "Add Entry",
             new_commitment_path,
             :class => 'btn btn-primary' %>

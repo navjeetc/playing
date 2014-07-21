@@ -33,7 +33,7 @@ class CommitmentsController < ApplicationController
 
     respond_to do |format|
       if @commitment.save
-        format.html { redirect_to @commitment, notice: 'Commitment was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Entry was successfully created.' }
         format.json { render :show, status: :created, location: @commitment }
       else
         format.html { render :new }
