@@ -11,3 +11,7 @@
 	margin-bottom: 20px;
 	font-size: 20px;
 }
+
+.form-group.required .control-label:after {
+  content:"*";color:red;
+}
