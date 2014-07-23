@@ -45,13 +45,15 @@ class CommitmentsController < ApplicationController
   # PATCH/PUT /commitments/1
   # PATCH/PUT /commitments/1.json
   def update
-    respond_to do |format|
-      if @commitment.update(commitment_params)
-        format.html { redirect_to @commitment, notice: 'Commitment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @commitment }
-      else
-        format.html { render :edit }
-        format.json { render json: @commitment.errors, status: :unprocessable_entity }
+    if @commitment.user == current_user
+      respond_to do |format|
+        if @commitment.update(commitment_params)
+          format.html { redirect_to root_path, notice: 'Commitment was successfully updated.' }
+          format.json { render :show, status: :ok, location: @commitment }
+        else
+          format.html { render :edit }
+          format.json { render json: @commitment.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -61,7 +63,7 @@ class CommitmentsController < ApplicationController
   def destroy
     @commitment.destroy
     respond_to do |format|
-      format.html { redirect_to commitments_url, notice: 'Commitment was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Commitment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

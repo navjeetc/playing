@@ -2,6 +2,7 @@
 <div class="page-header">
   <h1><%=t '.title', :default => "Who is playing" %></h1>
 </div>
+<%= today %>
 <%= link_to "Today", commitments_path(date: "today"), {:class => "btn btn-default #{params[:date] == 'today' ? 'active' : ''}"} %> 
 <%= link_to "Tomorrow", commitments_path(date: "tomorrow"), {:class => "btn btn-default #{params[:date] == 'tomorrow' ? 'active' : ''}"} %>  
 <%= link_to "In Coming Days", commitments_path, {:class => "btn btn-default #{params[:date].nil? ? 'active' : ''}"} %>
@@ -17,13 +18,21 @@
     <tr>
       <th>Player</th>
       <th>Coming At</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @commitments.each do |commitment| %>
       <tr>
         <td><%= commitment.user.first_name %> <%= commitment.user.last_name %></td>
-        <td><%= commitment.start_at.strftime("%B %d, %Y %H %M %p") %></td>
+        <td><%= commitment.start_at.strftime("%A %B %d, %Y %H %M %p") %></td>
+        <td>
+          <% if commitment.user == current_user %> 
+            <%= link_to edit_commitment_path(commitment), :class => 'btn btn-xs', :title => "Edit" do %>
+              <%= glyph 'pencil' %>
+            <%- end -%>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
